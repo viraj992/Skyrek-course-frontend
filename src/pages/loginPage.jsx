@@ -1,11 +1,12 @@
 import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function LoginPage(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate() //useNavigate hook
 
     function login(){
         console.log(email, password)
@@ -15,13 +16,19 @@ export default function LoginPage(){
         }).then(
             (response)=>{
                 console.log(response.data)
-                //alert("Login successful")
                 toast.success("Login Successful")
+
+                if(response.data.role == "admin"){
+                      navigate("/admin")  
+
+                }else if (response.data.role == "user"){
+                      navigate("/")
+                    
+                }
             }
         ).catch(
             (error)=>{
                 console.log(error)
-                //alert("Login failed")
                 toast.error("Login failed")
             }
         )
