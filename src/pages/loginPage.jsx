@@ -10,12 +10,14 @@ export default function LoginPage(){
 
     function login(){
         console.log(email, password)
-        axios.post("http://localhost:5000/api/users/login",{
+        axios.post(import.meta.env.VITE_BACKEND_URL + "/api/users/login",{
             email: email,
             password : password
         }).then(
             (response)=>{
                 console.log(response.data)
+                localStorage.setItem("token", response.data.token) // token save to local storage
+
                 toast.success("Login Successful")
 
                 if(response.data.role == "admin"){
@@ -58,7 +60,7 @@ export default function LoginPage(){
                     } type="password" className="w-[350px] h-[40px] border border-white rounded-xl"/>
                 </div>
 
-                <button onClick={login} className="w-[350px] h-[40px] bg-blue-500 rounded-xl text-white text-lg mt-5 hover:bg-blue-600 transition-all duration-300">
+                <button onClick={login} className="w-[350px] h-[40px] bg-blue-500 rounded-xl text-white text-lg mt-5 hover:bg-blue-600 transition-all duration-300 cursor-pointer">
                     Login
                 </button>
 
