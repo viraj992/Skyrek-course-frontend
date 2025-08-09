@@ -14,10 +14,12 @@ export default function LoginPage(){
         }).then(
             (response)=>{
                 console.log(response.data)
+                alert("Login successful")
             }
         ).catch(
             (error)=>{
                 console.log(error)
+                alert("Login failed")
             }
         )
     }
