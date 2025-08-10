@@ -12,10 +12,10 @@ export default function AdminPage(){
             <div className="w-[300px] h-full flex flex-col items-center bg-white">
 
                 <span className="text-3xl font-bold my-5">Admin Panel</span>
-                <Link className="flex h-[60px] w-full p-[25px] items-center text-xl gap-[25px]" to="/admin/products"><FaBoxArchive />Products</Link>
-                <Link className="flex h-[60px] w-full p-[25px] items-center text-xl gap-[25px]" to="/admin/orders"><GiShoppingBag />Orders</Link>
-                <Link className="flex h-[60px] w-full p-[25px] items-center text-xl gap-[25px]" to="/admin/users"><IoPeople />Users</Link>
-                <Link className="flex h-[60px] w-full p-[25px] items-center text-xl gap-[25px]" to="/admin/users"><IoSettings />Settings</Link>
+                <Link className="flex h-[60px] w-full border p-[20px] items-center text-xl gap-[25px]" to="/admin/products"><FaBoxArchive />Products</Link>
+                <Link className="flex h-[60px] w-full border p-[20px] items-center text-xl gap-[25px]" to="/admin/orders"><GiShoppingBag />Orders</Link>
+                <Link className="flex h-[60px] w-full border p-[20px] items-center text-xl gap-[25px]" to="/admin/users"><IoPeople />Users</Link>
+                <Link className="flex h-[60px] w-full border p-[20px] items-center text-xl gap-[25px]" to="/admin/users"><IoSettings />Settings</Link>
             </div>
             <div className="w-[calc(100%-300px)] h-full">
                 <Routes path="/*">
