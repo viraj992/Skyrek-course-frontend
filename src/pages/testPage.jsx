@@ -1,32 +1,27 @@
-import { useState } from "react";
+//const url "https://gahctdfvkjlwulpijbxo.supabase.co"
+//const key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdhaGN0ZGZ2a2psd3VscGlqYnhvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ5NzEzMzMsImV4cCI6MjA3MDU0NzMzM30.Hrmt4EkR9-Pdj6CbZAuDANavu5nueYNiTPvwBPyjYrw"
+import { useState } from "react"
+
 
 export default function TestPage(){
+    const [file, setFile] = useState(null);
     
-    const [count, setCount] = useState(0)
-
-    function increment(){
-        setCount(count+1);
+    function handleUpload(){
+        console.log(file)
     }
-
-    function decrement(){
-        setCount(count-1);
-    }
-
-
-
     return(
-        <div className="w-full h-screen bg-amber-500 flex justify-center items-center">
-            <div className="w-[400px] h-[400px] bg-white flex flex-col justify-center items-center">
-                <h1 className="text-5xl font-bold">{count}</h1>
-                <div className="w-full flex justify-center items-center h-[100px]">
-                    <button onClick={decrement} className="w-[100px] bg-blue-500 h-[45px] text-3xl mx-2 flex justify-center items-center text-white rounded-full">
-                        -
-                    </button>
-                    <button onClick={increment} className="w-[100px] bg-blue-500 h-[45px] text-3xl mx-2 flex justify-center items-center text-white rounded-full">
-                        +
-                    </button>
-                </div>
-            </div>
+        <div className="w-full h-screen flex justify-center items-center">
+            <input type="file"
+            onChange={
+                (e)=>{
+                    //console.log(e)
+                    //console.log(e.target.files[0])
+                    setFile(e.target.files[0]);
+                }
+            }/>
+            <button onClick={handleUpload} className="bg-blue-500 text-white px-4 py-2 rounded-md cursor-pointer">
+                upload
+            </button>
         </div>
     )
 }
