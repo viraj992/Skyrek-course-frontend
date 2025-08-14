@@ -9,22 +9,34 @@ export default function AddProductPage() {
 	const [alternativeNames, setAlternativeNames] = useState("");
 	const [labelledPrice, setLabelledPrice] = useState("");
 	const [price, setPrice] = useState("");
-	const [images, setImages] = useState("");
+	const [images, setImages] = useState([]);
 	const [description, setDescription] = useState("");
 	const [stock, setStock] = useState("");
 	const [isAvailable, setIsAvailable] = useState(true);
 	const [category, setCategory] = useState("cream");
     const navigate = useNavigate()
 
-    function handleSubmit(){
+    async function handleSubmit(){
         const altNamesInArray = alternativeNames.split(",")
+
+		//multiple images can upload
+		const promisesArray = []
+        for (let i=0; i<images.length; i++){
+			console.log(images[i]);
+			const promise = uploadFile(images[i])
+			promisesArray[i] = promise
+		}
+
+		const responses = await Promise.all(promisesArray)
+		console.log(responses)
+
         const productData = {
             productId: productId,
             name: productName,
             altNames: altNamesInArray,
             labelledPrice: labelledPrice,
             price: price,
-            images: [],
+            images: responses,
             description: description,
             stock: stock,
             isAvailable: isAvailable,
@@ -116,9 +128,11 @@ export default function AddProductPage() {
 				<div className="w-[500px] flex flex-col gap-[5px]">
 					<label className="text-sm font-semibold">Images</label>
 					<input
-						type="text"
-						value={images}
-						onChange={(e) => setImages(e.target.value)}
+						type="file"
+						multiple
+						onChange={(e) => {
+							setImages(e.target.files);
+						}}
 						className="w-full border-[1px] h-[40px] rounded-md"
 					/>
 				</div>

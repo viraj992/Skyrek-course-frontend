@@ -48,7 +48,7 @@ export default function LoginPage(){
                         (e)=>{
                             setEmail(e.target.value)
                         }
-                    } type="text" className="w-[350px] h-[40px] border border-white rounded-xl"/>
+                    } type="text" className="w-[350px] h-[40px] border border-white rounded-xl px-5 focus:border-4 focus:border-blue-500 outline-none"/>
                 </div>
                 <div className="w-[350px] flex flex-col ">
                     <span className="text-lg ">Password</span>
@@ -57,14 +57,14 @@ export default function LoginPage(){
                         (e)=>{
                             setPassword(e.target.value);
                         }
-                    } type="password" className="w-[350px] h-[40px] border border-white rounded-xl"/>
+                    } type="password" className="w-[350px] h-[40px] border border-white rounded-xl px-5 focus:border-4 focus:border-blue-500 outline-none"/>
                 </div>
 
                 <button onClick={login} className="w-[350px] h-[40px] bg-blue-500 rounded-xl text-white text-lg mt-5 hover:bg-blue-600 transition-all duration-300 cursor-pointer">
                     Login
                 </button>
 
-                <p>Don't Have an account? <Link to="/register" className="text-blue-500">Sign up</Link> from here</p>
+                <p>Don't Have an account? <Link to="/register" className="text-blue-500 font-semibold">Sign up</Link> from here</p>
                 
             </div>
             
