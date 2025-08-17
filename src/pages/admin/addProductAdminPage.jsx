@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
+import uploadFile from "../../utils/mediaUpload";
 
 export default function AddProductPage() {
 	const [productId, setProductId] = useState("");
@@ -16,20 +17,22 @@ export default function AddProductPage() {
 	const [category, setCategory] = useState("cream");
     const navigate = useNavigate()
 
-    async function handleSubmit(){
-        const altNamesInArray = alternativeNames.split(",")
+    async function  handleSubmit(){
 
-		//multiple images can upload
 		const promisesArray = []
-        for (let i=0; i<images.length; i++){
-			console.log(images[i]);
+
+		for(let i=0; i<images.length; i++){
+
 			const promise = uploadFile(images[i])
 			promisesArray[i] = promise
+
 		}
 
 		const responses = await Promise.all(promisesArray)
-		console.log(responses)
+		console.log(responses)		
 
+
+        const altNamesInArray = alternativeNames.split(",")
         const productData = {
             productId: productId,
             name: productName,
@@ -46,7 +49,7 @@ export default function AddProductPage() {
         const token = localStorage.getItem("token");
 
         if(token == null){
-            window.location.href = "/login";
+            navigate("/login");
             return;
         }
 
@@ -128,8 +131,8 @@ export default function AddProductPage() {
 				<div className="w-[500px] flex flex-col gap-[5px]">
 					<label className="text-sm font-semibold">Images</label>
 					<input
-						type="file"
 						multiple
+						type="file"
 						onChange={(e) => {
 							setImages(e.target.files);
 						}}
@@ -188,7 +191,7 @@ export default function AddProductPage() {
 					>
 						Cancel
 					</Link>
-					<button onClick={handleSubmit} className="w-[200px] h-[50px] bg-black text-white border-[2px] rounded-md flex justify-center items-center ml-[20px]">
+					<button onClick={handleSubmit} className="w-[200px] h-[50px] bg-black text-white border-[2px] rounded-md flex justify-center items-center ml-[20px] cursor-pointer">
 						Add Product
 					</button>
 				</div>
