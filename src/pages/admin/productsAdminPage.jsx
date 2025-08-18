@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { BiPlus, BiTrash } from "react-icons/bi";
+import { BiPlus, BiTrash, BiEdit } from "react-icons/bi";
 import { Link, useNavigate } from "react-router-dom";
 
 
@@ -23,9 +23,8 @@ export default function ProductsAdminPage() {
 
 	return (
 		<div className="w-full h-full border-[3px]">
-			<table>
+		    <table>
                 <thead>
-
                     <tr>
                         <th className="p-[10px]">Image</th>
                         <th className="p-[10px]">Product ID</th>
@@ -36,61 +35,59 @@ export default function ProductsAdminPage() {
                         <th className="p-[10px]">Stock</th>
                         <th className="p-[10px]">Actions</th>
                     </tr>
-
                 </thead>
-
                 <tbody>
                     {
-                        products.map(
-                            (product,index)=>{
-                                return(
-                                    <tr key={index}>
-                                        <td>
-                                            <img src={product.images[0]} alt={product.name} className="w-[50px] h-[50px]" />
-                                        </td>
-                                        <td className="p-[10px]">{product.productId}</td>
-                                        <td className="p-[10px]">{product.name}</td>
-                                        <td className="p-[10px]">{product.price}</td>
-                                        <td className="p-[10px]">{product.labelledPrice}</td>
-                                        <td className="p-[10px]">{product.category}</td>
-                                        <td className="p-[10px]">{product.stock}</td>
-                                        <td className="p-[10px]">
-                                            <BiTrash className="bg-red-500 p-[7px] text-3xl rounded-full text-white shadow-2xl shadow-black cursor-pointer" onClick={
-                                                ()=>{
-                                                    const token = localStorage.getItem("token");
-                                                    if(token == null){
-                                                        navigate("/login");
-                                                        return;
+                        products.map((product,index)=>{
+                            return(
+                                <tr key={index}>
+                                    <td>
+                                        <img src={product.images[0]} alt={product.name} className="w-[50px] h-[50px]"  />
+                                    </td>
+                                    <td className="p-[10px]">{product.productId}</td>
+                                    <td className="p-[10px]">{product.name}</td>
+                                    <td className="p-[10px]">{product.price}</td>
+                                    <td className="p-[10px]">{product.labelledPrice}</td>
+                                    <td className="p-[10px]">{product.category}</td>
+                                    <td className="p-[10px]">{product.stock}</td>
+                                    <td className="p-[10px] flex flex-row justify-center items-center ">
+                                        <BiTrash className="bg-red-500 p-[7px] text-3xl rounded-full text-white shadow-2xl shadow-black cursor-pointer"
+                                        onClick={()=>{
+                                            const token = localStorage.getItem("token");
+                                            if(token == null){
+                                                navigate("/login");
+                                                return;
+                                            }
+                                            axios.delete(import.meta.env.VITE_BACKEND_URL + "/api/products/" + product.productId,
+                                                {
+                                                    headears:{
+                                                        Authorization: `Bearer ${token}`
                                                     }
-                                                    axios.delete(import.meta.env.VITE_BACKEND_URL + "/api/products/" + product.productId, 
-                                                        {
-                                                            headers:{
-                                                                Authorization: `Bearer ${token}`
-                                                            }
-                                                        }
-                                                    ).then(
-                                                        (res)=>{
-                                                            console.log("Product deleted successfully");
-                                                            console.log(res.data);
-                                                            toast.success("Product deleted successfully");
-                                                            setA(a+1);
-                                                        }
-                                                    ).catch(
-                                                        (error)=>{
-                                                            console.error("Error deleting product:", error);
-                                                            toast.error("Failed to delete product");
-                                                        }
-                                                    )
                                                 }
-                                            }/>
-                                        </td>
-                                    </tr>
-                                )
-                            }
-                        )
+                                            ).then((res)=>{
+                                                console.log("Product deleted successfully");
+                                                console.log(res.data);
+                                                toast.success("Product deleted successfully");
+                                                setA(a+1);
+                                            }
+                                            ).catch(
+                                                (error)=>{
+                                                    console.error("Error deleting product:", error);
+                                                    toast.error("Failed to delete product");
+                                                }
+                                            ) 
+                                        }
+
+                                        }/>
+                                        <BiEdit className="bg-blue-500 p-[7px] text-3xl rounded-full text-white shadow-2xl shadow-black cursor-pointer ml-[10px]"/>
+                                    </td>
+                                </tr>
+                            )
+                        })
                     }
                 </tbody>
-            </table>
+            </table>	
+            
 			<Link
 				to={"/admin/newProduct"}
 				className="fixed right-[60px] bottom-[60px] p-[20px] text-white bg-black rounded-full shadow-2xl"
