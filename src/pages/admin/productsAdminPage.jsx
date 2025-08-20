@@ -4,11 +4,11 @@ import toast from "react-hot-toast";
 import { BiPlus, BiTrash, BiEdit } from "react-icons/bi";
 import { Link, useNavigate } from "react-router-dom";
 
-
-
 export default function ProductsAdminPage() {
     const [products,setProducts] = useState([])
-    const [a,setA] = useState(0);
+    const [isLoading, setIsLoading]= useState(true);
+
+    //const [a,setA] = useState(0);
     useEffect(
         ()=>{
             axios.get(import.meta.env.VITE_BACKEND_URL+"/api/products").then(
@@ -17,7 +17,7 @@ export default function ProductsAdminPage() {
                 }
             )
         },
-        [a]
+        [isLoading]
     )
     const navigate = useNavigate()
     
@@ -61,7 +61,7 @@ export default function ProductsAdminPage() {
                                             }
                                             axios.delete(import.meta.env.VITE_BACKEND_URL + "/api/products/" + product.productId,
                                                 {
-                                                    headears:{
+                                                    headers:{
                                                         Authorization: `Bearer ${token}`
                                                     }
                                                 }
@@ -69,7 +69,7 @@ export default function ProductsAdminPage() {
                                                 console.log("Product deleted successfully");
                                                 console.log(res.data);
                                                 toast.success("Product deleted successfully");
-                                                setA(a+1);
+                                                setIsLoading(!isLoading);
                                             }
                                             ).catch(
                                                 (error)=>{
