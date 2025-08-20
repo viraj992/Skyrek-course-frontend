@@ -20,6 +20,7 @@ export default function ProductsAdminPage() {
         [a]
     )
     const navigate = useNavigate()
+    
 
 	return (
 		<div className="w-full h-full border-[3px]">
@@ -79,7 +80,15 @@ export default function ProductsAdminPage() {
                                         }
 
                                         }/>
-                                        <BiEdit className="bg-blue-500 p-[7px] text-3xl rounded-full text-white shadow-2xl shadow-black cursor-pointer ml-[10px]"/>
+                                        <BiEdit onClick={
+                                           ()=>{
+                                            navigate("/admin/updateProduct",
+                                                {
+                                                    state : product
+                                                }
+                                            )
+                                           } 
+                                        } className="bg-blue-500 p-[7px] text-3xl rounded-full text-white shadow-2xl shadow-black cursor-pointer ml-[10px]"/>
                                     </td>
                                 </tr>
                             )
