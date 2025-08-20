@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { BiPlus, BiTrash, BiEdit } from "react-icons/bi";
 import { Link, useNavigate } from "react-router-dom";
+import Loader from "../../components/loader";
 
 export default function ProductsAdminPage() {
     const [products,setProducts] = useState([])
@@ -11,20 +12,23 @@ export default function ProductsAdminPage() {
     //const [a,setA] = useState(0);
     useEffect(
         ()=>{
-            axios.get(import.meta.env.VITE_BACKEND_URL+"/api/products").then(
+            if (isLoading){
+                axios.get(import.meta.env.VITE_BACKEND_URL+"/api/products").then(
                 (res)=>{
-                    setProducts(res.data)
-                }
-            )
-        },
-        [isLoading]
-    )
-    const navigate = useNavigate()
-    
+                    setProducts(res.data);
+                    setIsLoading(false);
+                });
+            }
+            
+        }, [isLoading]
+    );
+
+    const navigate = useNavigate();
 
 	return (
 		<div className="w-full h-full border-[3px]">
-		    <table>
+		    { isLoading ? (<Loader/>) :
+            (<table>
                 <thead>
                     <tr>
                         <th className="p-[10px]">Image</th>
@@ -95,7 +99,7 @@ export default function ProductsAdminPage() {
                         })
                     }
                 </tbody>
-            </table>	
+            </table>)}	
             
 			<Link
 				to={"/admin/newProduct"}

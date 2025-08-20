@@ -87,7 +87,7 @@ export default function UpdateProductPage() {
     }
 
     return (
-        <div className="w-full h-full flex justify-center items-center">
+        <div className="w-full min-h-screen flex justify-center items-center">
             <div className="w-[600px] border-[3px] rounded-[15px] p-[40px] flex flex-wrap justify-between">
                 <div className="w-[200px] flex flex-col gap-[5px]">
                     <label className="text-sm font-semibold">Product ID</label>
