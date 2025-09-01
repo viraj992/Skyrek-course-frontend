@@ -28,6 +28,7 @@ export function addToCart(product, qty){
                image: product.image 
             }
         )
+        localStorage.setItem("cart", JSON.stringify(cart));
     }else{
         const newQty = cart[existingProductIndex].quantity + qty;
         if(newQty <= 0){  //remove item
