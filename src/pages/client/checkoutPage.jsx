@@ -1,11 +1,25 @@
 import { useState } from "react"
-import {addToCart, getCart, getTotal} from "../../utils/cart"
 import { TbTrash } from "react-icons/tb"
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom"
 
-export default function CartPage(){
-    const [cart, setCart] = useState(getCart());
-    const navigate = useNavigate();
+export default function CheckOutpage(){
+    const location = useLocation();
+    const navigate = useNavigate;
+    const [cart, setCart] = useState(location.state.items || []);
+    if(location.state.items == null){
+        toast.console.error("Please select items to checkout");
+        navigate("/products");
+    }
+
+    function getTotal() {
+		let total = 0;
+		cart.forEach((item) => {
+			total += item.quantity * item.price;
+		});
+		return total;
+	}
+
+    
     return(
         <div className="w-full h-screen flex flex-col items-center py-[40px]">
             {
@@ -21,17 +35,15 @@ export default function CartPage(){
                                 </div>
 
                                 <div className="w-[190px] h-full flex flex-row justify-center items-center ">
-                                    <button className="flex justify-center items-center w-[30px] rounded-lg bg-blue-600 text-white  cursor-pointer hover:bg-white border-blue-600 border-[1px] hover:text-blue-600"  onClick={
+                                    <button className="flex justify-center items-center w-[30px] rounded-lg bg-blue-600 text-white  cursor-pointer hover:bg-blue-400" onClick={
                                         ()=>{
-                                            addToCart(item,-1);
-                                            setCart(getCart());
+                                            
                                         }
                                     }>-</button>
                                     <span className="mx-[10px]">{item.quantity}</span>
-                                    <button className="flex justify-center items-center w-[30px] rounded-lg bg-blue-600 text-white  cursor-pointer hover:bg-white border-blue-600 border-[1px] hover:text-blue-600" onClick={
+                                    <button className="flex justify-center items-center w-[30px] rounded-lg bg-blue-600 text-white cursor-pointer hover:bg-blue-400" onClick={
                                         ()=>{
-                                            addToCart(item,1);
-                                            setCart(getCart());
+                                            
                                         }
                                     } >+</button>
                                 </div>
@@ -40,8 +52,7 @@ export default function CartPage(){
                                 </div>
                                 <button className="w-[30px] h-[30px] absolute right-[-40px] cursor-pointer bg-red-700 shadow rounded-full flex justify-center items-center text-white border-red-700 border-[2px] hover:bg-white hover:text-red-700" onClick={
                                     ()=>{
-                                        addToCart(item, -item.quantity);
-                                        setCart(getCart());
+                                        
                                     }
                                 }>
                                     <TbTrash className="text-xl"/>
@@ -55,11 +66,8 @@ export default function CartPage(){
                 <span className="font-bold text-2xl">
                     Total: {getTotal().toLocaleString("en-us", { minimumFractionDigits:2, maximumFractionDigits:2})}
                 </span>
-                <button className="absolute left-[10px] w-[150px] h-[50px] cursor-pointer rounded-lg shadow-2xl bg-blue-700 border-[2px] border-blue-700 text-white hover:bg-white hover:text-blue-700"
-                onClick={()=>{
-                    navigate("/checkout", { state: {items: cart}});
-                }}>
-                    Checkout
+                <button className="absolute left-[10px] w-[150px] h-[50px] cursor-pointer rounded-lg shadow-2xl bg-blue-700 border-[2px] border-blue-700 text-white hover:bg-white hover:text-blue-700">
+                    Place Order
                 </button>
             </div>
         </div>
