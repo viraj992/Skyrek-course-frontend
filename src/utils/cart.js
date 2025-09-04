@@ -42,3 +42,12 @@ export function addToCart(product, qty){
         }
     }
 }
+
+export function getTotal(){
+    const cart = getCart();
+    let total = 0;
+    cart.forEach((item)=>{
+        total += item.quantity * item.price;
+    })
+    return total;
+}
