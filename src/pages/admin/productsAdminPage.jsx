@@ -9,7 +9,6 @@ export default function ProductsAdminPage() {
     const [products,setProducts] = useState([])
     const [isLoading, setIsLoading]= useState(true);
 
-    //const [a,setA] = useState(0);
     useEffect(
         ()=>{
             if (isLoading){
@@ -46,7 +45,7 @@ export default function ProductsAdminPage() {
                         products.map((product,index)=>{
                             return(
                                 <tr key={index}>
-                                    <td>
+                                    <td>    {/* 1st image only show */}
                                         <img src={product.images[0]} alt={product.name} className="w-[50px] h-[50px]"  />
                                     </td>
                                     <td className="p-[10px]">{product.productId}</td>

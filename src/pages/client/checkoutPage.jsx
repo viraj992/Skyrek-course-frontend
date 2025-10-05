@@ -69,8 +69,8 @@ export default function CheckoutPage() {
 			return;
 		}
 		const order = {
-			address: "df",
-			phone: "df",
+			address: address,
+			phone: phone,
             items : []
 		};
         cart.forEach((item) => {

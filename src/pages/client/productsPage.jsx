@@ -12,6 +12,7 @@ export default function ProductPage(){
             if (loading){
                 axios.get(import.meta.env.VITE_BACKEND_URL+"/api/products").then(
                 (res)=>{
+                    //console.log(res.data)
                     setProducts(res.data);
                     setLoading(false);
                     });
@@ -28,7 +29,7 @@ export default function ProductPage(){
                         prodcuts.map((product)=>{
                             return(
                                 <ProductCard key={product.productId} product={product} />
-                                    
+                                                                     // relevent product all details
                                 
                             )
                         })

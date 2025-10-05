@@ -22,8 +22,9 @@ export default function ProductCard(props){
                     ) : (
                         <span> {product.price.toFixed(2)} </span>
 
-                    )}
-                </div>
+                    )
+                    }
+                </div> 
             </div>
         </Link>
     )
