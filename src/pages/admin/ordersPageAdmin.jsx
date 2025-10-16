@@ -4,16 +4,20 @@ import { useEffect, useState } from "react"
 export default function OrdersPageAdmin(){
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [page, setPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(0);
+    const [limit, setLimit] = useState(10);
 
     useEffect(() => {
         if(loading){
-            axios.get(import.meta.env.VITE_BACKEND_URL + "/api/orders",{
+            axios.get(import.meta.env.VITE_BACKEND_URL + "/api/orders"+page+"/"+limit,{
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
             })
             .then((res) => {
-                setOrders(res.data);
+                setOrders(res.data.orders);
+                setTotalPages(res.data.totalPages);
                 setLoading(false);
                 console.log(res.data);
             })
@@ -21,7 +25,7 @@ export default function OrdersPageAdmin(){
                 console.error(err);
             });
         }
-    },[loading]);
+    },[loading,page,limit]);
         
     return(
         <div className="w-full h-full flex items-start"> 
@@ -50,7 +54,7 @@ export default function OrdersPageAdmin(){
                                 <td className="p-[10px]">{order.phone}</td>
                                 <td className="p-[10px]">{order.status}</td>
                                 <td className="p-[10px]">{new Date(order.date).toLocaleDateString()}</td>
-                                <td className="p-[10px]">{order.total}</td>
+                                <td className="p-[10px] text-end">{order.total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
                             </tr>
                             )
                         })
