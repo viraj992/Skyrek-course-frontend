@@ -10,7 +10,7 @@ export default function OrdersPageAdmin(){
 
     useEffect(() => {
         if(loading){
-            axios.get(import.meta.env.VITE_BACKEND_URL + "/api/orders"+page+"/"+limit,{
+            axios.get(import.meta.env.VITE_BACKEND_URL + "/api/orders/"+page+"/"+limit,{
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
