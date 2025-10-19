@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
+import Paginator from "../../components/paginator";
 
 export default function OrdersPageAdmin(){
     const [orders, setOrders] = useState([]);
@@ -61,6 +62,8 @@ export default function OrdersPageAdmin(){
                     }
                 </tbody>
             </table>
+            <Paginator currentPage={page} totalPages={totalPages} setCurrentPage={setPage}
+				limit={limit} setLimit={setLimit} setLoading={setLoading}/>
         </div>
     )
 }
