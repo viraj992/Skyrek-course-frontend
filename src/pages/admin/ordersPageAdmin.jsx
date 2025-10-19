@@ -28,7 +28,7 @@ export default function OrdersPageAdmin(){
     },[loading,page,limit]);
         
     return(
-        <div className="w-full h-full flex items-start"> 
+        <div className="w-full h-full flex flex-col items-start"> 
             <table className="w-full border-[3px] mt-[10px]">
                 <thead>
                     <tr>
