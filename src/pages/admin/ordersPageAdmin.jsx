@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
 import Paginator from "../../components/paginator";
+import toast from "react-hot-toast";
 
 export default function OrdersPageAdmin(){
     const [orders, setOrders] = useState([]);
