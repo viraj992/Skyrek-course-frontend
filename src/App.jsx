@@ -12,7 +12,7 @@ import OwnTestPage from "./pages/ownTest";
 function App() {
 	return (
 		<BrowserRouter>
-			<div className="w-full h-screen flex justify-center items-center">
+			<div className="w-full h-screen flex justify-center items-center bg-primary">
 					<Toaster position= "top-right"/>
 					<Routes path="/">
 						
