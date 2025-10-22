@@ -38,7 +38,7 @@ export default function OrdersPageAdmin(){
         
     return(
         <div className="w-full h-full flex flex-col justify-between items-start"> 
-            <table className="w-full border-[3px] mt-[20px]">
+            <table className="w-full border-[4px] border-accent mt-[20px]">
                 <thead>
                     <tr>
                         <th className="p-[10px]">Order ID</th>
@@ -55,7 +55,7 @@ export default function OrdersPageAdmin(){
                     {
                         orders.map((order,index)=>{
                             return(
-                            <tr key={order.orderID} className="border-b-[1px] hover:bg-blue-600 hover:text-white"
+                            <tr key={order.orderID} className="border-b-[1px] border-accent hover:bg-accent hover:text-white"
                             onClick={()=>{
                                 setOrderStatus(order.status);
                                 setOrderNotes(order.notes)

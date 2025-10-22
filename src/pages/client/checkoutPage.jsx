@@ -121,7 +121,7 @@ export default function CheckoutPage() {
 						</div>
 						<div className="w-[190px] h-full  flex flex-row justify-center items-center">
 							<button
-								className="flex justify-center items-center w-[30px] rounded-lg bg-blue-600 text-white cursor-pointer hover:bg-blue-400"
+								className="flex justify-center items-center w-[30px] rounded-lg bg-accent text-white cursor-pointer hover:bg-[#F06997]"
 								onClick={() => {
 									const newCart = [...cart];
 									newCart[index].quantity -= 1;
@@ -135,7 +135,7 @@ export default function CheckoutPage() {
 							</button>
 							<span className="mx-[10px]">{item.quantity}</span>
 							<button
-								className="flex justify-center items-center w-[30px] rounded-lg bg-blue-600 text-white cursor-pointer hover:bg-blue-400"
+								className="flex justify-center items-center w-[30px] rounded-lg bg-accent text-white cursor-pointer hover:bg-[#F06997]"
 								onClick={() => {
 									const newCart = [...cart];
 									//json copy
@@ -179,7 +179,7 @@ export default function CheckoutPage() {
 						maximumFractionDigits: 2,
 					})}
 				</span>
-				<button onClick={placeOrder} className="absolute left-[10px] w-[150px] h-[50px] cursor-pointer rounded-lg shadow-2xl bg-blue-700 border-[2px] border-blue-700 text-white hover:bg-white hover:text-blue-700">
+				<button onClick={placeOrder} className="absolute left-[10px] w-[150px] h-[50px] cursor-pointer rounded-lg shadow-2xl bg-accent border-[2px] border-accent text-white hover:bg-white hover:text-accent">
 					Place Order
 				</button>
 			</div>

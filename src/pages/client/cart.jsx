@@ -21,14 +21,14 @@ export default function CartPage(){
                                 </div>
 
                                 <div className="w-[190px] h-full flex flex-row justify-center items-center ">
-                                    <button className="flex justify-center items-center w-[30px] rounded-lg bg-blue-600 text-white  cursor-pointer hover:bg-white border-blue-600 border-[1px] hover:text-blue-600"  onClick={
+                                    <button className="flex justify-center items-center w-[30px] rounded-lg bg-accent text-white  cursor-pointer hover:bg-white border-accent border-[1px] hover:text-accent"  onClick={
                                         ()=>{
                                             addToCart(item,-1);
                                             setCart(getCart());
                                         }
                                     }>-</button>
                                     <span className="mx-[10px]">{item.quantity}</span>
-                                    <button className="flex justify-center items-center w-[30px] rounded-lg bg-blue-600 text-white  cursor-pointer hover:bg-white border-blue-600 border-[1px] hover:text-blue-600" onClick={
+                                    <button className="flex justify-center items-center w-[30px] rounded-lg bg-accent text-white  cursor-pointer hover:bg-white border-accent border-[1px] hover:text-accent" onClick={
                                         ()=>{
                                             addToCart(item,1);
                                             setCart(getCart());
@@ -55,7 +55,7 @@ export default function CartPage(){
                 <span className="font-bold text-2xl">
                     Total: {getTotal().toLocaleString("en-us", { minimumFractionDigits:2, maximumFractionDigits:2})}
                 </span>
-                <button className="absolute left-[10px] w-[150px] h-[50px] cursor-pointer rounded-lg shadow-2xl bg-blue-700 border-[2px] border-blue-700 text-white hover:bg-white hover:text-blue-700"
+                <button className="absolute left-[10px] w-[150px] h-[50px] cursor-pointer rounded-lg shadow-2xl bg-accent border-[2px] border-accent text-white hover:bg-white hover:text-accent"
                 onClick={()=>{
                     navigate("/checkout", { state: {items: cart}});
                 }}>
