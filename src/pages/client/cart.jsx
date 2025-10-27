@@ -7,17 +7,17 @@ export default function CartPage(){
     const [cart, setCart] = useState(getCart());
     const navigate = useNavigate();
     return(
-        <div className="w-full h-screen flex flex-col items-center py-[40px]">
+        <div className="w-[100vw] max-w-[100vw] h-screen flex flex-col items-center py-[40px] px-[10px]">
             {
                 cart.map(
                     (item)=>{
                         return(
-                            <div key={item.productId} className="w-[800px] h-[100px] m-[10px] shadow-2xl flex flex-row items-center relative">
+                            <div key={item.productId} className="w-full md:w-[800px] md:h-[100px] m-[10px] shadow-2xl flex flex-row items-center relative">
                                 <img src={item.image} className="w-[100px] h-[100px] object-cover"/>
 
                                 <div className="w-[320px] h-full flex flex-col justify-center pl-[10px]">
-                                    <span className=" font-bold">{item.name}</span>
-                                    <span className="font-semibold">{item.price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                                    <span className=" font-bold text-center md:text-left">{item.name}</span>
+                                    <span className="font-semibold text-center md:text-left">{item.price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                                 </div>
 
                                 <div className="w-[190px] h-full flex flex-row justify-center items-center ">
@@ -51,11 +51,11 @@ export default function CartPage(){
                     }
                 )
             }
-            <div className="w-[800px] h-[100px] m-[10px] p-[10px] shadow-2xl flex flex-row items-center justify-end relative">
+            <div className="md:w-[800px] w-full h-[100px] m-[10px] p-[10px] shadow-2xl flex flex-row items-center justify-end relative">
                 <span className="font-bold text-2xl">
                     Total: {getTotal().toLocaleString("en-us", { minimumFractionDigits:2, maximumFractionDigits:2})}
                 </span>
-                <button className="absolute left-[10px] w-[150px] h-[50px] cursor-pointer rounded-lg shadow-2xl bg-accent border-[2px] border-accent text-white hover:bg-white hover:text-accent"
+                <button className="absolute left-[10px] w-[200px] md:w-[150px] h-[50px] cursor-pointer rounded-lg shadow-2xl bg-accent border-[2px] border-accent text-white hover:bg-white hover:text-accent"
                 onClick={()=>{
                     navigate("/checkout", { state: {items: cart}});
                 }}>

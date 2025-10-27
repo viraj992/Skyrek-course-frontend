@@ -3,5 +3,5 @@
 @theme {
   --color-primary: #FFF9F9;   /* background -  not white */  
   --color-secondary: #000000; /* text/nav/footer */
-  --color-accent: #E91E63;    /* buttons/hover/highlights */ 
+  --color-accent: #0D47A1;    /* buttons/hover/highlights #E91E63-pink */  
 }
