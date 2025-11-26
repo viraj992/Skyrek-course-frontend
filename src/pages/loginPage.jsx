@@ -93,7 +93,8 @@ export default function LoginPage(){
                 </button>
 
                 <p>Don't Have an account? <Link to="/register" className="text-blue-500 font-semibold">Sign up</Link> from here</p>
-                
+                <p>Forget Password ? <Link to="/forget" className="text-blue-500 font-semibold">reset password</Link> from here</p>
+
             </div>
             
         </div>
