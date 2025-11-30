@@ -24,5 +24,4 @@ dist-ssr
 *.sw?
 
 # Ignore your test page
-ownTest.jsx
 testedPrevPage.jsx

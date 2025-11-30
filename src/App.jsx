@@ -7,7 +7,7 @@ import AdminPage from "./pages/adminPage";
 import TestPage from "./pages/testPage";
 import { Toaster } from "react-hot-toast";
 import ClientwebPage from "./pages/client/clientPage";
-import OwnTestPage from "./pages/ownTest";
+
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import ForgetPasswordPage from "./pages/client/forgetPassword";
 const clientId = "32169099435-0s3td2s6c11ej62pasbcd6vau8vlhih1.apps.googleusercontent.com";
@@ -23,7 +23,7 @@ function App() {
 						
 						<Route path="/login" element={<LoginPage/>}/>
 						<Route path="/test" element={<TestPage/>}/>
-						<Route path="/mytest" element={<OwnTestPage/>}/>
+						
 						<Route path="/register" element={<RegisterPage/>}/>
 						<Route path = "/admin/*" element={<AdminPage/>}/>
 						<Route path = "/forget" element={<ForgetPasswordPage/>}/>
