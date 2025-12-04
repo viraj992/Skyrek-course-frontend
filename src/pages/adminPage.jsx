@@ -1,4 +1,4 @@
-import { NavLink, Route, Routes } from "react-router-dom";
+import { NavLink, Route, Routes, useNavigate } from "react-router-dom";
 import { FaBoxArchive } from "react-icons/fa6";
 import { GiShoppingBag } from "react-icons/gi";
 import { IoPeople, IoSettings } from "react-icons/io5";
@@ -6,10 +6,44 @@ import ProductsAdminPage from "./admin/productsAdminPage";
 import AddProductPage from "./admin/addProductAdminPage";
 import UpdateProductPage from "./admin/updateProduct";
 import OrdersPageAdmin from "./admin/ordersPageAdmin";
+import { useEffect, useState } from "react";
+import Loader from "../components/loader";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function AdminPage() {
+  const navigate = useNavigate();
+  const [adminValidated, setAdminValidated] = useState(false);
+  useEffect(
+      ()=>{
+        const token = localStorage.getItem("token");
+        if(token == null){
+          toast.error("You are not logged in");
+          navigate("/login");
+        }
+        else{
+          axios.get(import.meta.env.VITE_BACKEND_URL+"/api/users/", {
+              headers: {
+                  Authorization: `Bearer ${token}`,
+              },
+          }).then((response) => {
+              if (response.data.role == "admin") {
+                  setAdminValidated(true);
+              } else {
+                  toast.error("You are not authorized");
+                  navigate("/login");
+              }
+          }).catch(() => {
+              toast.error("You are not authorized");
+              navigate("/login");
+          });
+      }
+      }
+  ,[]);
+
   return (
     <div className="w-full h-screen flex">
+      {adminValidated?<>
       {/* Sidebar */}
       <div className="w-[300px] h-full flex flex-col items-center">
         <span className="text-3xl font-bold my-5">Admin Panel</span>
@@ -69,6 +103,7 @@ export default function AdminPage() {
           <Route path="/updateProduct" element={<UpdateProductPage />} />
         </Routes>
       </div>
+    </> : <Loader/>}
     </div>
   );
 }
