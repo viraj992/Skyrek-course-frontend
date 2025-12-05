@@ -1,5 +1,6 @@
 import { useState} from "react";
 import { BiCart, BiStore } from "react-icons/bi";
+import { FiLogOut } from "react-icons/fi";
 import { GiHamburger, GiHamburgerMenu } from "react-icons/gi";
 import { HiHome } from "react-icons/hi";
 import { Link, useNavigate } from "react-router-dom";
@@ -72,33 +73,35 @@ export default function Header(){
             }}/>
 
             <div className="hidden w-full md:flex justify-center items-center">
-                <Link to="/" className="text-white text-1xl ">
+                <Link to="/" className="text-white text-xl ">
                     Home
                 </Link>
-                <Link to="/products" className="ml-4 text-white text-1xl">
+                <Link to="/products" className="ml-6 text-white text-xl ">
                     Products
                 </Link>
-                <Link to="/reviews" className="ml-4 text-white text-1xl">
+                <Link to="/reviews" className="ml-6 text-white text-xl">
                     Reviews
                 </Link>
-                <Link to="/about-us" className="ml-4 text-white text-1xl">
+                <Link to="/about-us" className="ml-6 text-white text-xl">
                     About Us
                 </Link>
-                <Link to="/contact-us" className="ml-4 text-white text-1xl">
+                <Link to="/contact-us" className="ml-6 text-white text-xl">
                     Contact Us
                 </Link>
-                <Link to="/cart" className="absolute right-[250px]">
+                <Link to="/cart" className="absolute right-[230px]">
                     <BiCart className="text-white text-3xl ml-4"/>
                 </Link>
 
         
                 {
-                    token!=null && <button className="absolute right-[80px] text-white text-xl ml-4" onClick={
+                    token!=null && <button className="absolute right-[80px] text-white text-xl ml-4 cursor-pointer"
+                     onClick={
                         ()=>{
                             localStorage.removeItem("token");
                             navigate("/login");
                         }
-                    }>
+                     }>
+                        <FiLogOut className="absolute left-[75px] text-xl cursor-pointer" />
                         Logout
                     </button>
                 }

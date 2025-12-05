@@ -67,7 +67,7 @@ export default function LoginPage(){
 
     return (
   <div className="w-full h-screen bg-[url(./loginbg.jpg)] bg-cover bg-center flex justify-center items-center">
-    <div className="w-[440px] min-h-[550px] bg-white/20 backdrop-blur-lg shadow-2xl rounded-[25px] p-8 relative flex flex-col items-center">
+    <div className="w-[440px] min-h-[550px] bg-white backdrop-blur-lg shadow-2xl rounded-[25px] p-8 relative flex flex-col items-center">
     
       
 
@@ -77,7 +77,7 @@ export default function LoginPage(){
       {/* Sign up link */}
       <p className="text-black mb-12">
         Don’t have an account yet?{" "}
-        <Link className="text-blue-600 font-bold" to="/register">
+        <Link className="text-secondary font-bold" to="/register">
           Signup
         </Link>
       </p>
@@ -113,7 +113,7 @@ export default function LoginPage(){
       {/* Login Button */}
       <button
         onClick={login}
-        className="w-full h-[40px] bg-blue-600 rounded-xl text-white text-md font-medium mt-2 hover:bg-blue-700 transition-all duration-300"
+        className="w-full h-[40px] bg-secondary rounded-xl text-white text-md font-medium mt-2 transition-all duration-200 cursor-pointer"
       >
         Login
       </button>
@@ -128,7 +128,7 @@ export default function LoginPage(){
       {/* Google Login */}
       <button
         onClick={googleLogin}
-        className="w-full h-[40px] bg-white rounded-xl text-black  flex items-center justify-center gap-2 hover:bg-gray-200 transition-all duration-300 font-medium"
+        className="w-full h-[40px] bg-gray-300 rounded-xl text-black  flex items-center justify-center gap-2 hover:bg-gray-400 transition-all duration-300 font-medium cursor-pointer"
       >
         <FcGoogle className="text-2xl" />
         Continue with Google
@@ -137,7 +137,7 @@ export default function LoginPage(){
       {/* Links */}
       <p className="mt-5 text-black font-light">
         Forget Password?{" "}
-        <Link className="text-blue-600 font-semibold" to="/forget">
+        <Link className="text-secondary font-semibold" to="/forget">
           Reset here
         </Link>
       </p>
