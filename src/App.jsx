@@ -13,10 +13,13 @@ import ForgetPasswordPage from "./pages/client/forgetPassword";
 const clientId = "32169099435-0s3td2s6c11ej62pasbcd6vau8vlhih1.apps.googleusercontent.com";
 const clientSecret = "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"
 
+
+
 function App() {
 	return (
 		<BrowserRouter>
 		<GoogleOAuthProvider clientId={clientId}>
+			
 			<div className="w-full h-screen flex justify-center items-center bg-primary">
 					<Toaster position= "top-right"/>
 					<Routes path="/">
@@ -30,6 +33,7 @@ function App() {
 						<Route path = "/*" element={<ClientwebPage/>}/>
 					</Routes>
 				</div>
+			
 		</GoogleOAuthProvider>
 		</BrowserRouter>
 
