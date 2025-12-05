@@ -2,6 +2,11 @@
 
 @theme {
   --color-primary: #FFF9F9;   /* background -  not white */  
-  --color-secondary: #000000; /* text/nav/footer */
-  --color-accent: #0D47A1;    /* buttons/hover/highlights #E91E63-pink */  
+  --color-secondary: #382c2e; /* text/nav/footer */
+  --color-accent: #7c5d63;    /* buttons/hover/highlights #E91E63-pink  #7c5d63 #382c2e */  
 }
+
+body {
+  font-family: "Inter", sans-serif;
+}
+

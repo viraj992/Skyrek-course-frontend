@@ -2,6 +2,10 @@ import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { FcGoogle } from "react-icons/fc";
+import { MdEmail } from "react-icons/md";
+import { RiLockPasswordLine } from "react-icons/ri";
+
 import { Link, useNavigate } from "react-router-dom";
 
 export default function LoginPage(){
@@ -33,7 +37,7 @@ export default function LoginPage(){
     })
     
     function login(){
-        console.log(email, password)
+        //console.log(email, password)
         axios.post(import.meta.env.VITE_BACKEND_URL + "/api/users/login",{
             email: email,
             password : password
@@ -61,42 +65,85 @@ export default function LoginPage(){
     }
     
 
-    return(
-        <div className="w-full h-screen bg-[url(./loginbg.jpg)] bg-cover bg-center flex justify-center items-center">
-            <div className="w-[500px] h-[500px] backdrop-blur-sm shadow-2xl rounded-[30px] relative gap-[20px] text-blue-500 flex flex-col items-center justify-center border-3">
-                <h1 className="absolute top-[20px] text-3xl font-bold text-center my-5">Login</h1>
+    return (
+  <div className="w-full h-screen bg-[url(./loginbg.jpg)] bg-cover bg-center flex justify-center items-center">
+    <div className="w-[440px] min-h-[550px] bg-white backdrop-blur-lg shadow-2xl rounded-[25px] p-8 relative flex flex-col items-center">
+    
+      
 
-                <div className="w-[350px] flex flex-col ">
-                    <span className="text-lg ">Email</span>
-                    <input onChange={
-                        (e)=>{
-                            setEmail(e.target.value)
-                        }
-                    } type="text" className="w-[350px] h-[40px] border border-white rounded-xl px-5 focus:border-4 focus:border-blue-500 outline-none"/>
-                </div>
-                <div className="w-[350px] flex flex-col ">
-                    <span className="text-lg ">Password</span>
+      {/* Title */}
+      <h1 className="text-3xl font-bold mb-3 mt-7 text-black">Welcome Back</h1>
 
-                    <input onChange={
-                        (e)=>{
-                            setPassword(e.target.value);
-                        }
-                    } type="password" className="w-[350px] h-[40px] border border-white rounded-xl px-5 focus:border-4 focus:border-blue-500 outline-none"/>
-                </div>
+      {/* Sign up link */}
+      <p className="text-black mb-12">
+        Don’t have an account yet?{" "}
+        <Link className="text-secondary font-bold" to="/register">
+          Signup
+        </Link>
+      </p>
 
-                <button onClick={login} className="w-[350px] h-[40px] bg-blue-500 rounded-xl text-white text-lg mt-5 hover:bg-blue-600 transition-all duration-300 cursor-pointer">
-                    Login
-                </button>
-
-                <button onClick={googleLogin} className="w-[350px] h-[40px] bg-blue-500 rounded-xl text-white text-lg mt-5 hover:bg-blue-600 transition-all duration-300 cursor-pointer">
-                    Google Login
-                </button>
-
-                <p>Don't Have an account? <Link to="/register" className="text-blue-500 font-semibold">Sign up</Link> from here</p>
-                <p>Forget Password ? <Link to="/forget" className="text-blue-500 font-semibold">reset password</Link> from here</p>
-
-            </div>
-            
+      {/* Email Input */}
+      <div className="w-full mb-4">
+        {/*<label className="text-black">Email Address</label> */}
+        <div className="flex items-center border-4 border-gray-400 focus-within:border-blue-500 rounded-xl px-3 h-[45px] bg-white ">
+          <MdEmail className="text-xl text-gray-600 mr-2" />
+          <input
+            type="text"
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full outline-none"
+            placeholder="Enter your email"
+          />
         </div>
-    )
+      </div>
+
+      {/* Password Input */}
+      <div className="w-full mb-4">
+         {/*<label className="text-black">Password</label> */}
+        <div className="flex items-center border-4 border-gray-400 focus-within:border-blue-600 rounded-xl px-3 h-[45px] bg-white">
+          <RiLockPasswordLine className="text-xl text-gray-600 mr-2" />
+          <input
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full outline-none"
+            placeholder="Enter your password"
+          />
+        </div>
+      </div>
+
+      {/* Login Button */}
+      <button
+        onClick={login}
+        className="w-full h-[40px] bg-secondary rounded-xl text-white text-md font-medium mt-2 transition-all duration-200 cursor-pointer"
+      >
+        Login
+      </button>
+
+      {/* OR */}
+      <div className="flex items-center w-full my-4">
+        <div className="flex-grow border-t border-gray-500"></div>
+        <span className="mx-2 text-black text-md ">OR</span>
+        <div className="flex-grow border-t border-gray-500"></div>
+      </div>
+
+      {/* Google Login */}
+      <button
+        onClick={googleLogin}
+        className="w-full h-[40px] bg-gray-300 rounded-xl text-black  flex items-center justify-center gap-2 hover:bg-gray-400 transition-all duration-300 font-medium cursor-pointer"
+      >
+        <FcGoogle className="text-2xl" />
+        Continue with Google
+      </button>
+
+      {/* Links */}
+      <p className="mt-5 text-black font-light">
+        Forget Password?{" "}
+        <Link className="text-secondary font-semibold" to="/forget">
+          Reset here
+        </Link>
+      </p>
+
+    </div>
+  </div>
+);
+
 }
