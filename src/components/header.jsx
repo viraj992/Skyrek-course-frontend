@@ -1,15 +1,21 @@
-import { useState } from "react";
+import { useState} from "react";
 import { BiCart, BiStore } from "react-icons/bi";
 import { GiHamburger, GiHamburgerMenu } from "react-icons/gi";
 import { HiHome } from "react-icons/hi";
 import { Link, useNavigate } from "react-router-dom";
 
+
+
 export default function Header(){
     const navigate = useNavigate();
     const [isOpen, setIsOpen]= useState(false);
     const token = localStorage.getItem("token");
+
+    
     return(
         <header className="h-[100px] bg-accent flex justify-center items-center relative">
+
+
             {
                 isOpen && 
                 <div className="fixed z-[100] top-0 right-0 w-[100vw] h-[100vh] bg-[#00000050]">
@@ -84,6 +90,8 @@ export default function Header(){
                 <Link to="/cart" className="absolute right-[250px]">
                     <BiCart className="text-white text-3xl ml-4"/>
                 </Link>
+
+        
                 {
                     token!=null && <button className="absolute right-[80px] text-white text-xl ml-4" onClick={
                         ()=>{

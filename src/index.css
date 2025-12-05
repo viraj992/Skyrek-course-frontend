@@ -5,3 +5,8 @@
   --color-secondary: #000000; /* text/nav/footer */
   --color-accent: #0D47A1;    /* buttons/hover/highlights #E91E63-pink */  
 }
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
