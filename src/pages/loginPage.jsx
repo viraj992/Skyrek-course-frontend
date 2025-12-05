@@ -37,7 +37,7 @@ export default function LoginPage(){
     })
     
     function login(){
-        console.log(email, password)
+        //console.log(email, password)
         axios.post(import.meta.env.VITE_BACKEND_URL + "/api/users/login",{
             email: email,
             password : password
@@ -99,7 +99,7 @@ export default function LoginPage(){
       {/* Password Input */}
       <div className="w-full mb-4">
          {/*<label className="text-black">Password</label> */}
-        <div className="flex items-center border-4 border-gray-400 focus-within:border-blue-500 rounded-xl px-3 h-[45px] bg-white">
+        <div className="flex items-center border-4 border-gray-400 focus-within:border-blue-600 rounded-xl px-3 h-[45px] bg-white">
           <RiLockPasswordLine className="text-xl text-gray-600 mr-2" />
           <input
             type="password"
@@ -113,7 +113,7 @@ export default function LoginPage(){
       {/* Login Button */}
       <button
         onClick={login}
-        className="w-full h-[40px] bg-blue-500 rounded-xl text-white text-md font-medium mt-2 hover:bg-blue-600 transition-all duration-300"
+        className="w-full h-[40px] bg-blue-600 rounded-xl text-white text-md font-medium mt-2 hover:bg-blue-700 transition-all duration-300"
       >
         Login
       </button>
