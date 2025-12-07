@@ -1,8 +1,9 @@
 import { useState} from "react";
 import { BiCart, BiStore } from "react-icons/bi";
-import { FiLogOut } from "react-icons/fi";
+import { FiLogIn, FiLogOut } from "react-icons/fi";
 import { GiHamburger, GiHamburgerMenu } from "react-icons/gi";
 import { HiHome } from "react-icons/hi";
+import { MdPersonAdd } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 
 
@@ -73,19 +74,19 @@ export default function Header(){
             }}/>
 
             <div className="hidden w-full md:flex justify-center items-center">
-                <Link to="/" className="text-white text-xl ">
+                <Link to="/" className="text-white text-xl hover:bg-white hover:rounded-full hover:px-4 hover:py-2 hover:text-accent hover:gap-2">
                     Home
                 </Link>
-                <Link to="/products" className="ml-6 text-white text-xl ">
+                <Link to="/products" className="ml-6 text-white text-xl hover:bg-white hover:rounded-full hover:px-4 hover:py-2 hover:text-accent hover:gap-2">
                     Products
                 </Link>
-                <Link to="/reviews" className="ml-6 text-white text-xl">
+                <Link to="/reviews" className="ml-6 text-white text-xl hover:bg-white hover:rounded-full hover:px-4 hover:py-2 hover:text-accent hover:gap-2">
                     Reviews
                 </Link>
-                <Link to="/about-us" className="ml-6 text-white text-xl">
+                <Link to="/about-us" className="ml-6 text-white text-xl hover:bg-white hover:rounded-full hover:px-4 hover:py-2 hover:text-accent hover:gap-2">
                     About Us
                 </Link>
-                <Link to="/contact-us" className="ml-6 text-white text-xl">
+                <Link to="/contact-us" className="ml-6 text-white text-xl hover:bg-white hover:rounded-full hover:px-4 hover:py-2 hover:text-accent hover:gap-2">
                     Contact Us
                 </Link>
                 <Link to="/cart" className="absolute right-[230px]">
@@ -94,17 +95,30 @@ export default function Header(){
 
         
                 {
-                    token!=null && <button className="absolute right-[80px] text-white text-xl ml-4 cursor-pointer"
+                    token!=null && <button className="absolute right-[60px] text-xl font-medium cursor-pointer flex items-center gap-2 bg-white text-accent px-4 py-2 rounded-full"
                      onClick={
                         ()=>{
                             localStorage.removeItem("token");
                             navigate("/login");
                         }
                      }>
-                        <FiLogOut className="absolute left-[75px] text-xl cursor-pointer" />
+                        <FiLogOut className=" left-[75px] text-xl" />
                         Logout
                     </button>
                 }
+              
+                {
+                    token == null && <button className="absolute right-[60px] text-xl font-medium ml-4 cursor-pointer bg-white flex items-center  gap-2 text-accent px-4 py-2 rounded-full hover:bg-gray-200"
+                     onClick={
+                        ()=>{
+                           navigate("/login");
+                        }
+                     }>
+                        <MdPersonAdd className=" text-2xl " />
+                        LogIn
+                    </button>
+                }
+
             </div>
         </header>
     )
