@@ -21,7 +21,7 @@ export default function Header(){
             {
                 isOpen && 
                 <div className="fixed z-[100] top-0 right-0 w-[100vw] h-[100vh] bg-[#00000050]">
-                    <div className="h-full w-[350px] bg-white flex flex-col">
+                    <div className="h-full w-[330px] bg-white flex flex-col">
                         <div className="w-full bg-accent h-[120px] flex pl-[45px] flex-row items-center gap-[20px]">
                             <GiHamburgerMenu className="text-white md:hidden text-3xl" onClick={()=>{
                                 setIsOpen(close);
