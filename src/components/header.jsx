@@ -23,7 +23,7 @@ export default function Header(){
                 <div className="fixed z-[100] top-0 right-0 w-[100vw] h-[100vh] bg-[#00000050]">
                     <div className="h-full w-[350px] bg-white flex flex-col">
                         <div className="w-full bg-accent h-[120px] flex pl-[45px] flex-row items-center gap-[20px]">
-                            <GiHamburgerMenu className="text-white md:hidden text-4xl" onClick={()=>{
+                            <GiHamburgerMenu className="text-white md:hidden text-3xl" onClick={()=>{
                                 setIsOpen(close);
                             }}/>
                             <img className="w-[180px] h-[80px] object-cover cursor-pointer"
@@ -32,31 +32,31 @@ export default function Header(){
                             }} src="/logo.png" alt="Logo"/>
                         </div>
 
-                        <div className="w-full h-full flex flex-col p-[45px] items-start gap-[10px]">
-                            <button className="text-accent text-2xl flex flex-row justify-center cursor-pointer"
+                        <div className="w-full h-full flex flex-col p-[45px] items-start gap-[20px]">
+                            <button className="text-accent text-xl flex flex-row justify-center cursor-pointer"
                             onClick={()=>{
                                 setIsOpen(false);
                                 navigate("/")
                             }}>
-                                <HiHome className="text-accent text-2xl mr-2"/>
+                                <HiHome className="text-accent text-2xl mr-4"/>
                                 Home
                             </button>
 
-                            <button className="text-accent text-2xl flex flex-row justify-center cursor-pointer"
+                            <button className="text-accent text-xl flex flex-row justify-center cursor-pointer"
                             onClick={()=>{
                                 setIsOpen(false);
                                 navigate("/products")
                             }}>
-                                <BiStore className="text-accent text-2xl mr-2"/>
+                                <BiStore className="text-accent text-2xl mr-4"/>
                                 Products
                             </button>
 
-                            <button className="text-accent text-2xl flex flex-row justify-center cursor-pointer"
+                            <button className="text-accent text-xl flex flex-row justify-center cursor-pointer"
                             onClick={()=>{
                                 setIsOpen(false);
                                 navigate("/cart")
                             }}>
-                                <BiCart className="text-accent text-2xl mr-2"/>
+                                <BiCart className="text-accent text-2xl mr-4"/>
                                 Cart
                             </button>
                         </div>
@@ -68,7 +68,7 @@ export default function Header(){
             onClick={()=>{
                 navigate("/")
             }} src="/logo.png" alt="Logo"/>
-            <GiHamburgerMenu className="text-white absolute md:hidden left-[40px] text-4xl"
+            <GiHamburgerMenu className="text-white absolute md:hidden left-[40px] text-3xl"
             onClick={()=>{
                 setIsOpen(true);
             }}/>

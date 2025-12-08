@@ -85,7 +85,7 @@ export default function LoginPage(){
       {/* Email Input */}
       <div className="w-full mb-4">
         {/*<label className="text-black">Email Address</label> */}
-        <div className="flex items-center border-4 border-gray-400 focus-within:border-blue-500 rounded-xl px-3 h-[45px] bg-white ">
+        <div className="flex items-center border-4 border-gray-400 focus-within:border-[#A06C74] rounded-xl px-3 h-[45px] bg-white ">
           <MdEmail className="text-xl text-gray-600 mr-2" />
           <input
             type="text"
@@ -99,7 +99,7 @@ export default function LoginPage(){
       {/* Password Input */}
       <div className="w-full mb-4">
          {/*<label className="text-black">Password</label> */}
-        <div className="flex items-center border-4 border-gray-400 focus-within:border-blue-600 rounded-xl px-3 h-[45px] bg-white">
+        <div className="flex items-center border-4 border-gray-400 focus-within:border-[#A06C74] rounded-xl px-3 h-[45px] bg-white">
           <RiLockPasswordLine className="text-xl text-gray-600 mr-2" />
           <input
             type="password"

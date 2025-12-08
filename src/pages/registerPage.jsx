@@ -61,7 +61,7 @@ export default function RegisterPage() {
 
         {/* Name */}
         <div className="w-full mb-5">
-          <div className="flex items-center border-4 border-gray-400 focus-within:border-blue-500 rounded-xl px-3 h-[45px] bg-white">
+          <div className="flex items-center border-4 border-gray-400 focus-within:border-[#A06C74] rounded-xl px-3 h-[45px] bg-white">
             <FiUser className="text-xl text-gray-600 mr-2" />
             <input
               type="text"
@@ -74,7 +74,7 @@ export default function RegisterPage() {
 
         {/* Email */}
         <div className="w-full mb-5">
-          <div className="flex items-center border-4 border-gray-400 focus-within:border-blue-500 rounded-xl px-3 h-[45px] bg-white">
+          <div className="flex items-center border-4 border-gray-400 focus-within:border-[#A06C74] rounded-xl px-3 h-[45px] bg-white">
             <MdEmail className="text-xl text-gray-600 mr-2" />
             <input
               type="text"
@@ -87,7 +87,7 @@ export default function RegisterPage() {
 
         {/* Password */}
         <div className="w-full mb-5">
-          <div className="flex items-center border-4 border-gray-400 focus-within:border-blue-500 rounded-xl px-3 h-[45px] bg-white">
+          <div className="flex items-center border-4 border-gray-400 focus-within:border-[#A06C74] rounded-xl px-3 h-[45px] bg-white">
             <RiLockPasswordLine className="text-xl text-gray-600 mr-2" />
             <input
               type="password"
@@ -100,7 +100,7 @@ export default function RegisterPage() {
 
         <button
           onClick={registerUser}
-          className="w-full h-[45px] bg-blue-600 rounded-xl text-white text-md font-medium mt-2 hover:bg-blue-700 transition-all duration-300"
+          className="w-full h-[45px] bg-secondary rounded-xl text-white text-md font-medium mt-2 hover:bg-[#614b4e] transition-all duration-300"
         >
           Register
         </button>
