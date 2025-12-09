@@ -89,8 +89,8 @@ export default function Header(){
                 <Link to="/contact-us" className="ml-6 text-white text-xl hover:bg-white hover:rounded-full hover:px-4 hover:py-2 hover:text-accent hover:gap-2">
                     Contact Us
                 </Link>
-                <Link to="/cart" className="absolute right-[230px]">
-                    <BiCart className="text-white text-3xl ml-4"/>
+                <Link to="/cart" className="absolute right-[230px] ">
+                    <BiCart className="text-white text-3xl ml-4  "/>
                 </Link>
 
         
