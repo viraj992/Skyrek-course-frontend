@@ -29,12 +29,12 @@ export default function ProductOverViewPage(){
     )
     
     return (
-        <div className="w-full h-full">
+        <div className="w-full h-full ">
             {
                 status == "loading" && <Loader/>
             }
             {
-                status == "success" && <div className="w-full h-full flex flex-col md:flex-row">
+                status == "success" && <div className="w-full h-full flex flex-col md:flex-row mt-[30px]">
                     <h1 className="text-2xl font-bold my-4 text-center md:hidden">{product.name} <span className="font-light">{product.altNames.join(" | ")}</span></h1>
                     <div className="w-full md:w-[49%] h-full flex flex-col justify-center items-center">
                         <ImageSlider images={product.images} />
