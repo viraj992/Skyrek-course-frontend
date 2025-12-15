@@ -3,7 +3,7 @@
 @theme {
   --color-primary: #FFF9F9;   /* background -  not white */  
   --color-secondary: #382c2e; /* text/nav/footer */
-  --color-accent: #7c5d63;    /* buttons/hover/highlights #E91E63-pink  #7c5d63 #382c2e */  
+  --color-accent: #d49263;    /* buttons/hover/highlights #E91E63-pink #d49263  #7c5d63 #382c2e */  
 }
 
 body {
