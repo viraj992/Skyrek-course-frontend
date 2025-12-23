@@ -7,6 +7,7 @@ import CheckOutpage from "./checkoutPage";
 import ContactUsPage from "../contactUsPage";
 import ReviewsPage from "../reviewsPage";
 
+
 export default function ClientwebPage(){
     return(
         <div className="w-full h-screen max-h-screen ">
