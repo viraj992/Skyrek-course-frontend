@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import Loader from "../components/loader";
 import toast from "react-hot-toast";
 import axios from "axios";
+import ReviewsAdminPage from "./admin/reviewsAdminPage";
 
 export default function AdminPage() {
   const navigate = useNavigate();
@@ -82,6 +83,17 @@ export default function AdminPage() {
         </NavLink>
 
         <NavLink
+          to="/admin/adminReviews"
+          className={({ isActive }) =>
+            `flex flex-row h-[60px] w-full p-[20px] pl-[60px] items-center text-xl gap-[25px] ${
+              isActive ? "bg-accent text-white" : ""
+            }`
+          }
+        >
+          <IoSettings /> Reviews
+        </NavLink>
+
+        <NavLink
           to="/admin/settings"
           className={({ isActive }) =>
             `flex flex-row h-[60px] w-full p-[20px] pl-[60px] items-center text-xl gap-[25px] ${
@@ -101,6 +113,7 @@ export default function AdminPage() {
           <Route path="/newProduct" element={<AddProductPage />} />
           <Route path="/orders" element={<OrdersPageAdmin />} />
           <Route path="/updateProduct" element={<UpdateProductPage />} />
+          <Route path="/adminReviews" element={<ReviewsAdminPage/>}/>
         </Routes>
       </div>
     </> : <Loader/>}
