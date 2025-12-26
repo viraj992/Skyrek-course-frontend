@@ -11,6 +11,8 @@ import Loader from "../components/loader";
 import toast from "react-hot-toast";
 import axios from "axios";
 import ReviewsAdminPage from "./admin/reviewsAdminPage";
+import { FaStar } from "react-icons/fa";
+import UsersManagePage from "./admin/usersManagePage";
 
 export default function AdminPage() {
   const navigate = useNavigate();
@@ -90,7 +92,7 @@ export default function AdminPage() {
             }`
           }
         >
-          <IoSettings /> Reviews
+          <FaStar /> Reviews
         </NavLink>
 
         <NavLink
@@ -114,6 +116,7 @@ export default function AdminPage() {
           <Route path="/orders" element={<OrdersPageAdmin />} />
           <Route path="/updateProduct" element={<UpdateProductPage />} />
           <Route path="/adminReviews" element={<ReviewsAdminPage/>}/>
+          <Route path="/users" element={<UsersManagePage/>}/>
         </Routes>
       </div>
     </> : <Loader/>}

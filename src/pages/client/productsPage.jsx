@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import Loader from "../../components/loader";
 import axios from "axios";
 import ProductCard from "../../components/productCard";
+import { BiSearch } from "react-icons/bi";
 
 export default function ProductPage(){
     const [prodcuts,setProducts] = useState([])
@@ -29,8 +30,8 @@ export default function ProductPage(){
 	}, [loading]);
 
     return(
-        <div className="w-full h-full">
-            <div className="w-full h-[100px] flex justify-center items-center">
+        <div className="w-full h-full ">
+            <div className="w-full h-[100px] flex fixed justify-center items-center relative ">
                 <input
                     type="text"
                     placeholder="Search products..."
@@ -40,7 +41,9 @@ export default function ProductPage(){
                         setLoading(true);
                     }}
                     className="w-[400px] h-[40px] border border-gray-300 rounded-lg p-2"
+                    
                 />
+                <BiSearch className="absolute ml-[360px] text-2xl text-gray-400"/>
             </div>
             {
                 loading ? <Loader/> : 

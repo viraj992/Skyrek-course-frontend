@@ -1,9 +1,10 @@
 import { useState} from "react";
 import { BiCart, BiStore } from "react-icons/bi";
+import { FaStar } from "react-icons/fa";
 import { FiLogIn, FiLogOut } from "react-icons/fi";
 import { GiHamburger, GiHamburgerMenu } from "react-icons/gi";
 import { HiHome } from "react-icons/hi";
-import { MdPersonAdd } from "react-icons/md";
+import { MdContactMail, MdInfo, MdPersonAdd } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 
 
@@ -15,7 +16,7 @@ export default function Header(){
 
     
     return(
-        <header className="h-[100px] bg-accent flex justify-center items-center relative">
+        <header className="h-[100px] bg-accent flex justify-center items-center fixed top-0 left-0 w-full z-[200]">
 
 
             {
@@ -58,6 +59,33 @@ export default function Header(){
                             }}>
                                 <BiCart className="text-accent text-2xl mr-2"/>
                                 Cart
+                            </button>
+
+                            <button className="text-accent text-2xl flex flex-row justify-center cursor-pointer"
+                            onClick={()=>{
+                                setIsOpen(false);
+                                navigate("/cart")
+                            }}>
+                                <FaStar className="text-accent text-2xl mr-2"/>
+                                Reviews
+                            </button>
+
+                            <button className="text-accent text-2xl flex flex-row justify-center cursor-pointer"
+                            onClick={()=>{
+                                setIsOpen(false);
+                                navigate("/cart")
+                            }}>
+                                <MdContactMail className="text-accent text-2xl mr-2"/>
+                                Contact US
+                            </button>
+
+                            <button className="text-accent text-2xl flex flex-row justify-center cursor-pointer"
+                            onClick={()=>{
+                                setIsOpen(false);
+                                navigate("/cart")
+                            }}>
+                                <MdInfo className="text-accent text-2xl mr-2"/>
+                                About Us
                             </button>
                         </div>
 
