@@ -31,7 +31,7 @@ export default function ProductPage(){
 
     return(
         <div className="w-full h-full ">
-            <div className="w-full h-[100px] flex fixed justify-center items-center relative ">
+            <div className="w-full h-[100px] flex justify-center items-center relative ">
                 <input
                     type="text"
                     placeholder="Search products..."

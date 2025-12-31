@@ -1,119 +1,172 @@
-import { useState, useEffect } from "react";
-import { FaStar } from "react-icons/fa";
 import axios from "axios";
+import { useState, useEffect } from "react";
+import toast from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
 
-export default function ReviewsPage() {
-  const [reviews, setReviews] = useState([]);
+// ⭐ SWIPER IMPORTS
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+export default function AddReviewPage() {
   const [rating, setRating] = useState(0);
-  const [hover, setHover] = useState(0);
-  const [reviewText, setReviewText] = useState("");
+  const [comment, setComment] = useState("");
 
-  const token = localStorage.getItem("token");
+  const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const fetchReviews = async () => {
-    try {
-      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/reviews`);
-      setReviews(res.data);
-    } catch (error) {
-      console.error("Failed to fetch reviews:", error);
-    }
-  };
+  const navigate = useNavigate();
 
+  // ⭐ Star rating handler
+  function handleStarClick(value) {
+    setRating(value);
+  }
+
+  // ⭐ Auto-fetch reviews
   useEffect(() => {
-    fetchReviews();
-  }, []);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!token) return alert("Please login to add review");
-    if (rating === 0) return alert("Please select a rating");
-
-    try {
-      await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/reviews`,
-        { rating, reviewText },
-        { headers: { Authorization: "Bearer " + token } }
-      );
-      alert("Review added successfully!");
-      setRating(0);
-      setReviewText("");
-      fetchReviews();
-    } catch (error) {
-      console.error("Error adding review:", error);
-      alert("Failed to add review");
+    if (loading) {
+      axios
+        .get(import.meta.env.VITE_BACKEND_URL + "/api/reviews")
+        .then((res) => {
+          setReviews(res.data);
+          setLoading(false);
+        })
+        .catch(() => {
+          toast.error("Failed to load reviews");
+          setLoading(false);
+        });
     }
-  };
+  }, [loading]);
 
-  const avgRating =
-    reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length || 0;
+  // ⭐ Submit review
+  function handleSubmit() {
+    const token = localStorage.getItem("token");
+
+    if (!token) return navigate("/login");
+
+    if (rating === 0) return toast.error("Please select a rating");
+    if (comment.trim().length < 3)
+      return toast.error("Comment is too short");
+
+    const data = { rating, comment };
+
+    axios
+      .post(import.meta.env.VITE_BACKEND_URL + "/api/reviews", data, {
+        headers: { Authorization: "Bearer " + token },
+      })
+      .then(() => {
+        toast.success("Review submitted");
+        setComment("");
+        setRating(0);
+        setLoading(true); // refresh reviews
+      })
+      .catch(() => toast.error("Failed to submit review"));
+  }
 
   return (
-    <div className="p-6 bg-gray-100 min-h-screen">
-      <h1 className="text-3xl font-bold mb-4 text-center">Customer Reviews</h1>
+    <div className="w-full min-h-screen flex flex-col justify-start items-center bg-gray-50 pb-10">
 
-      {/* Average Rating */}
-      <div className="bg-white p-4 rounded-xl shadow-md text-center mb-6">
-        <h2 className="text-xl font-semibold">Average Rating</h2>
-        <p className="text-2xl font-bold mt-2">⭐ {avgRating.toFixed(1)} / 5</p>
-        <p className="text-gray-600">{reviews.length} reviews</p>
-      </div>
+      {/* FORM */}
+      <div className="w-[700px] bg-white shadow-2xl rounded-2xl p-10 mt-10">
+        <h2 className="text-2xl font-bold mb-6">Add Your Review</h2>
 
-      {/* Add Review Form */}
-      <div className="bg-white p-6 rounded-xl shadow-lg mb-6">
-        <h2 className="text-xl font-semibold mb-4">Write a Review</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="flex gap-2 mb-4">
-            {[1, 2, 3, 4, 5].map((star) => (
-              <FaStar
-                key={star}
-                size={28}
-                onClick={() => setRating(star)}
-                onMouseEnter={() => setHover(star)}
-                onMouseLeave={() => setHover(0)}
-                className={`cursor-pointer ${
-                  star <= (hover || rating) ? "text-yellow-400" : "text-gray-300"
+        {/* Rating */}
+        <div className="flex flex-col mb-6">
+          <label className="text-sm font-semibold mb-2">Rating</label>
+          <div className="flex gap-2 text-3xl cursor-pointer">
+            {[1, 2, 3, 4, 5].map((value) => (
+              <span
+                key={value}
+                onClick={() => handleStarClick(value)}
+                className={`transition ${
+                  value <= rating ? "text-yellow-500" : "text-gray-300"
                 }`}
-              />
+              >
+                ★
+              </span>
             ))}
           </div>
+        </div>
+
+        {/* Comment */}
+        <div className="flex flex-col mb-6">
+          <label className="text-sm font-semibold mb-1">Comment</label>
           <textarea
-            value={reviewText}
-            onChange={(e) => setReviewText(e.target.value)}
-            placeholder="Write your review..."
-            className="w-full border p-3 rounded-lg focus:outline-accent"
-            rows="4"
-            required
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+            className="border rounded-lg h-[120px] px-3 py-2"
+            placeholder="Write your experience..."
           ></textarea>
+        </div>
+
+        <div className="w-full flex justify-between mt-8">
+          <Link
+            to={"/reviews"}
+            className="w-[48%] h-[50px] border border-gray-400 rounded-lg flex justify-center items-center font-semibold hover:bg-gray-100 transition"
+          >
+            Cancel
+          </Link>
+
           <button
-            type="submit"
-            className="mt-3 bg-accent text-white px-5 py-2 rounded-lg hover:bg-accent/90"
+            onClick={handleSubmit}
+            className="w-[48%] h-[50px] bg-black text-white rounded-lg font-semibold hover:bg-gray-800 transition cursor-pointer"
           >
             Submit Review
           </button>
-        </form>
+        </div>
       </div>
 
-      {/* Reviews List */}
-      <div className="space-y-4">
-        {reviews.length === 0 ? (
-          <p className="text-center text-gray-500">No reviews yet.</p>
+
+      {/* ⭐ SWIPER SLIDER */}
+      <div className="w-[700px] bg-white shadow-xl rounded-xl p-6 mt-10">
+        <h3 className="text-xl font-bold mb-4">Customer Reviews</h3>
+
+        {loading ? (
+          <p>Loading…</p>
+        ) : reviews.length === 0 ? (
+          <p>No reviews yet</p>
         ) : (
-          reviews.map((r) => (
-            <div
-              key={r._id}
-              className="bg-white p-4 rounded-xl shadow-md border-l-4 border-accent"
-            >
-              <div className="flex items-center gap-1">
-                {Array.from({ length: r.rating }).map((_, i) => (
-                  <FaStar key={i} className="text-yellow-400" />
-                ))}
-              </div>
-              <p className="mt-2 text-gray-800">{r.reviewText}</p>
-              <p className="text-sm text-gray-500 mt-1">
-                {r.userName} | {new Date(r.createdAt).toLocaleDateString()}
-              </p>
-            </div>
-          ))
+          <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            spaceBetween={20}
+            slidesPerView={2}
+            navigation
+            pagination={{ clickable: true }}
+            autoplay={{ delay: 2500 }}
+            loop={true}
+            style={{ paddingBottom: "40px" }}
+          >
+            {reviews.map((r) => (
+              <SwiperSlide key={r._id}>
+                <div className="bg-gray-100 border rounded-xl p-4 shadow-md h-[180px]">
+                  
+                  {/* Name */}
+                  <div className="font-semibold text-lg mb-1">
+                    {r.reviewerName}
+                  </div>
+
+                  {/* Stars */}
+                  <div className="text-yellow-500 text-xl mb-2">
+                    {"★".repeat(r.rating)}
+                    {"☆".repeat(5 - r.rating)}
+                  </div>
+
+                  {/* Comment */}
+                  <div className="text-gray-700 text-sm leading-5 h-[70px] overflow-hidden">
+                    {r.comment}
+                  </div>
+
+                  {/* Date */}
+                  <div className="text-gray-400 text-xs mt-3">
+                    {new Date(r.createdAt).toLocaleDateString()}
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         )}
       </div>
     </div>

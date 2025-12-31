@@ -25,7 +25,7 @@ export default function ProductsAdminPage() {
     const navigate = useNavigate();
 
 	return (
-		<div className="w-full h-full border-[3px]">
+		<div className="w-full h-full border-[4px] border-accent ">
 		    { isLoading ? (<Loader/>) :
             (<table>
                 <thead>
@@ -102,7 +102,7 @@ export default function ProductsAdminPage() {
             
 			<Link
 				to={"/admin/newProduct"}
-				className="fixed right-[60px] bottom-[60px] p-[20px] text-white bg-black rounded-full shadow-2xl"
+				className="fixed right-[60px] bottom-[60px] p-[20px] text-white bg-black rounded-full shadow-2xl hover:scale-130 hover:bg-gray-800 hover:shadow-3xl transition-all duration-300"
 			>
 				<BiPlus className="text-3xl" />
 			</Link>

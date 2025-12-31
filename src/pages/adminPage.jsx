@@ -108,7 +108,7 @@ export default function AdminPage() {
       </div>
 
       {/* Content */}
-      <div className="w-[calc(100%-300px)] h-full">
+      <div className="w-[calc(100%-300px)] h-full mt-[20px]">
         <Routes>
           <Route path="/" element={<h1>Dashboard</h1>} />
           <Route path="/products" element={<ProductsAdminPage />} />

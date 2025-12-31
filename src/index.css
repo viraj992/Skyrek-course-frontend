@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation"; */
+
+
 @theme {
   --color-primary: #FFF9F9;   /* background -  not white */  
   --color-secondary: #382c2e; /* text/nav/footer */
