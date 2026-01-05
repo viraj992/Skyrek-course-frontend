@@ -77,8 +77,7 @@ export default function AddProductPage() {
 
 
     }
-	//<div className="w-full h-full flex justify-center items-center">
-	//<div className="w-[600px] border-[3px] rounded-[15px] p-[40px] flex flex-wrap justify-between">
+	
 
 	return (
   <div className="w-full min-h-screen flex justify-center items-start bg-gray-50">

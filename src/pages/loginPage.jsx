@@ -49,7 +49,7 @@ export default function LoginPage(){
                 toast.success("Login Successful")
 
                 if(response.data.role == "admin"){
-                      navigate("/admin")  
+                      navigate("/admin/dashboard")  
 
                 }else if (response.data.role == "user"){
                       navigate("/")
