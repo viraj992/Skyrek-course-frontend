@@ -40,10 +40,11 @@ export default function ProductPage(){
                         setQuery(e.target.value);
                         setLoading(true);
                     }}
-                    className="w-[400px] h-[40px] border border-gray-300 rounded-lg p-2"
+                    className="w-[400px] h-[40px] bg-gray-100 border border-gray-200 rounded-lg p-2"
                     
                 />
-                <BiSearch className="absolute ml-[360px] text-2xl text-gray-400"/>
+                <div className="absolute ml-[360px] bg-accent h-[40px] w-[40px] rounded-lg flex justify-center items-center">
+                <BiSearch className="  text-2xl  text-white"/></div>
             </div>
             {
                 loading ? <Loader/> : 

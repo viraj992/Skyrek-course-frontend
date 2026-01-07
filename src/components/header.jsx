@@ -17,14 +17,14 @@ export default function Header() {
   const token = localStorage.getItem("token");
 
   return (
-    <header className="h-[100px] bg-accent flex justify-center items-center fixed top-0 left-0 w-full z-[200]">
+    <header className="h-[100px] bg-white flex justify-center items-center fixed top-0 left-0 w-full z-[200] border-4 border-accent">
       {/* ================= MOBILE OVERLAY ================= */}
       {isOpen && (
         <div className="fixed z-[100] top-0 right-0 w-[100vw] h-[100vh] bg-[#00000050]">
           <div className="h-full w-[350px] bg-white flex flex-col">
             <div className="w-full bg-accent h-[120px] flex pl-[45px] items-center gap-[20px]">
               <GiHamburgerMenu
-                className="text-white md:hidden text-4xl cursor-pointer"
+                className="text-accent md:hidden text-4xl cursor-pointer"
                 onClick={() => setIsOpen(false)}
               />
               <img
@@ -96,11 +96,11 @@ export default function Header() {
               to={to}
               end={end}
               className={({ isActive }) =>
-                `text-sm lg:text-lg whitespace-nowrap transition-all
+                `text-sm lg:text-lg whitespace-nowrap transition-all font-semibold
                 ${
                   isActive
-                    ? "bg-white text-accent px-3 lg:px-4 py-2 rounded-full font-semibold"
-                    : "text-white hover:bg-white hover:text-accent hover:px-3 lg:hover:px-4 hover:py-2 hover:rounded-full"
+                    ? "bg-gray-200 text-accent px-3 lg:px-4 py-2 rounded-full font-semibold"
+                    : "text-accent hover:bg-gray-200 hover:text-accent hover:px-3 lg:hover:px-4 hover:py-2 hover:rounded-full"
                 }`
               }
             >
@@ -112,7 +112,7 @@ export default function Header() {
         {/* ================= RIGHT SIDE ================= */}
         <div className="flex items-center gap-2 lg:gap-4 ml-auto">
           <NavLink to="/cart">
-            <BiCart className="text-white text-2xl lg:text-3xl hover:scale-110 transition-transform" />
+            <BiCart className="text-accent text-2xl lg:text-3xl hover:scale-110 transition-transform" />
           </NavLink>
 
           {token ? (

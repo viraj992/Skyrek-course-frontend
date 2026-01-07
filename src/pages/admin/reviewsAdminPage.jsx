@@ -108,7 +108,7 @@ export default function ReviewsAdminPage() {
 								onClick={async () => {
 									setPopupVisible(false);
 									try {
-										await axios.patch(
+										await axios.put(
 											import.meta.env.VITE_BACKEND_URL + "/api/reviews/" + clickedReview._id,
 											{ isApproved: isApproved === "yes" },
 											{
@@ -117,7 +117,7 @@ export default function ReviewsAdminPage() {
 												},
 											}
 										);
-										toast.success("Review updated successfully");
+										toast.success("Review Approved successfully");
 										setLoading(true);
 									} catch (err) {
 										console.error(err);
