@@ -184,9 +184,10 @@ export default function AddProductPage() {
               onChange={(e) => setCategory(e.target.value)}
               className="border rounded-lg h-[40px] px-3"
             >
-              <option value="cream">Cream</option>
-              <option value="face wash">Face Wash</option>
-              <option value="soap">Soap</option>
+              <option value="skincare">Skincare</option>
+              <option value="makeup">Makeup</option>
+              <option value="haircare">Hair Care</option>
+              <option value="bodycare">Body Care</option>
               <option value="fragrance">Fragrance</option>
             </select>
           </div>
